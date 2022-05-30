@@ -23,9 +23,22 @@ import java.lang.reflect.Field;
 public class SpigotHandler {
 
     private final JavaPlugin plugin;
-    protected SpigotType type;
+    /**
+     * The knockbackAPI instance through which
+     * plugins can use knockback methods
+     */
     private IKnockbackType knockback;
+    /**
+     * The listener instance if its in HCF Mode
+     * I don't see a need for this in plugins but its
+     * there in case someone wants it lel
+     */
     private IListener listener;
+    /**
+     * An enum that detects the correct spigot and
+     * gives it's API instance
+     */
+    protected SpigotType type;
 
     public SpigotHandler(JavaPlugin plugin) {
         Preconditions.checkNotNull(plugin, "Plugin instance can not be null!");
@@ -89,7 +102,7 @@ public class SpigotHandler {
     public boolean isEntityHiderRequired() {
         try {
             Class<?> classInstance = Class.forName("net.minecraft.server.v1_8_R3.EntityItem");
-            Field field = classInstance.getField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
+            classInstance.getField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
             return true;
         } catch (ClassNotFoundException | NoSuchFieldException e) {
             return false;
