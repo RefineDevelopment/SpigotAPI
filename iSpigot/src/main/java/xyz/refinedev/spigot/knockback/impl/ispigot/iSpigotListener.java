@@ -1,4 +1,4 @@
-package xyz.refinedev.spigot.knockback.impl;
+package xyz.refinedev.spigot.knockback.impl.ispigot;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;

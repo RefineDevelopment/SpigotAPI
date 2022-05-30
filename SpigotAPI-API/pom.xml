@@ -9,28 +9,14 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>FoxSpigot</artifactId>
+    <artifactId>SpigotAPI-API</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>xyz.refinedev.api</groupId>
-            <artifactId>KnockbackAPI</artifactId>
-            <version>Latest</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/API.jar</systemPath>
-        </dependency>
-        <dependency>
-            <groupId>xyz.refinedev.api</groupId>
-            <artifactId>API</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <defaultGoal>package</defaultGoal>

@@ -3,7 +3,6 @@ package xyz.refinedev.spigot.event.impl;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.entity.PotionEffectEvent;
 import org.bukkit.potion.PotionEffect;
 
 /**

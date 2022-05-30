@@ -1,7 +1,6 @@
 package xyz.refinedev.spigot.event.impl;
 
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.entity.PotionEffectRemoveEvent;
 import org.bukkit.potion.PotionEffect;
 
 /**

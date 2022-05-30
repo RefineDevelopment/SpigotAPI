@@ -97,7 +97,7 @@ public class EntityHider {
     }
 
     @SneakyThrows
-    public void init() {
+    public void startListening() {
         manager.addPacketListener(protocolListener);
         plugin.getServer().getPluginManager().registerEvents(bukkitListener, plugin);
 

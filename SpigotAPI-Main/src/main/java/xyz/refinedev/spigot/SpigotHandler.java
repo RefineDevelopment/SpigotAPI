@@ -34,7 +34,7 @@ public class SpigotHandler {
 
     /**
      * Initiate in non-listener mode, meaning
-     * this won't register the events listener
+     * this won't, register or check for, the HCF events listener
      */
     public void init() {
         this.init(false);
@@ -70,16 +70,24 @@ public class SpigotHandler {
             plugin.getLogger().warning("[EntityHider] The spigot you are using, already has a built-in entity hider!");
             plugin.getLogger().warning("[EntityHider] Please refrain from using the API's Custom Entity Hider.");
         }
+
         EntityHider entityHider = new EntityHider(plugin, EntityHider.Policy.BLACKLIST);
-        entityHider.init();
+        entityHider.startListening();
+
         plugin.getLogger().info("[EntityHider] Successfully enabled the custom Entity Hider, intercepting packets...");
     }
 
-    @SuppressWarnings("all")
+
+    /**
+     * Just a random check I made, which should work
+     * for most spigots using same structure as SpigotX
+     *
+     * @return {@link Boolean}
+     */
     public boolean isEntityHiderRequired() {
         try {
-            Class<?> clzz = Class.forName("net.minecraft.server.v1_8_R3.EntityItem");
-            Field field = clzz.getField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
+            Class<?> classInstance = Class.forName("net.minecraft.server.v1_8_R3.EntityItem");
+            Field field = classInstance.getField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
             return true;
         } catch (ClassNotFoundException | NoSuchFieldException e) {
             return false;

@@ -3,15 +3,15 @@ package xyz.refinedev.spigot;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import xyz.refinedev.spigot.event.IListener;
+import xyz.refinedev.spigot.knockback.IKnockbackType;
 import xyz.refinedev.spigot.knockback.impl.atom.AtomSpigotKnockback;
 import xyz.refinedev.spigot.knockback.impl.atom.AtomSpigotListener;
 import xyz.refinedev.spigot.knockback.impl.carbon.CarbonSpigotKnockback;
 import xyz.refinedev.spigot.knockback.impl.carbon.CarbonSpigotListener;
-import xyz.refinedev.spigot.knockback.IKnockbackType;
 import xyz.refinedev.spigot.knockback.impl.fox.FoxSpigotKnockback;
 import xyz.refinedev.spigot.knockback.impl.fox.FoxSpigotListener;
-import xyz.refinedev.spigot.knockback.impl.iSpigotKnockback;
-import xyz.refinedev.spigot.knockback.impl.iSpigotListener;
+import xyz.refinedev.spigot.knockback.impl.ispigot.iSpigotKnockback;
+import xyz.refinedev.spigot.knockback.impl.ispigot.iSpigotListener;
 
 import java.util.Arrays;
 

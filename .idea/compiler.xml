@@ -6,6 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="SpigotAPI-Main" />
+        <module name="SpigotAPI-API" />
         <module name="FoxSpigot" />
         <module name="iSpigot" />
         <module name="AtomSpigot" />

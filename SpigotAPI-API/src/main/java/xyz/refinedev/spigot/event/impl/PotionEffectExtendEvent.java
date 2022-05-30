@@ -16,7 +16,7 @@ public class PotionEffectExtendEvent extends PotionEffectAddEvent {
 
     private final PotionEffect oldEffect;
 
-    public PotionEffectExtendEvent(LivingEntity what, PotionEffect effect, PotionEffectAddEvent.EffectAddReason reason, PotionEffect oldEffect) {
+    public PotionEffectExtendEvent(LivingEntity what, PotionEffect effect, EffectAddReason reason, PotionEffect oldEffect) {
         super(what, effect, reason);
         this.oldEffect = oldEffect;
     }
