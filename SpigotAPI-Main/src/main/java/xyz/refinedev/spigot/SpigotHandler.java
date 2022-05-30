@@ -47,16 +47,18 @@ public class SpigotHandler {
      */
     public void init(boolean hcfMode) {
         this.type = SpigotType.get(); // We call the static method that checks for the supported spigot and returns the correct type
-        if (!this.type.equals(SpigotType.Default)) {
-            this.knockback = type.getKnockbackType();
-            this.listener = type.getListener();
-            this.listener.register(plugin);
 
-            if (hcfMode) { // Register our custom event listener for equipment set event
-                EquipmentListener equipmentListener = new EquipmentListener();
-                plugin.getServer().getPluginManager().registerEvents(equipmentListener, plugin);
-            }
-        }
+        if (type == SpigotType.Default) return;
+
+        this.knockback = type.getKnockbackType();
+        this.listener = type.getListener();
+        this.listener.register(plugin);
+
+        if (!hcfMode) return;
+
+        // Register our custom event listener for equipment set event
+        EquipmentListener equipmentListener = new EquipmentListener();
+        plugin.getServer().getPluginManager().registerEvents(equipmentListener, plugin);
     }
 
     /**
