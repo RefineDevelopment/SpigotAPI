@@ -18,7 +18,7 @@ public class CarbonSpigotKnockback implements IKnockbackType {
 
     @Override
     public void setKnockback(Player player, String knockback) {
-        IKnockback<?, ?, ?, ?> knockbackImplement = KnockbackAPI.getByName(knockback);
+        IKnockback knockbackImplement = KnockbackAPI.getByName(knockback);
         KnockbackAPI.applyKnockback(knockbackImplement, player);
     }
 }
