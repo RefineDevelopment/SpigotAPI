@@ -2,6 +2,8 @@ package xyz.refinedev.spigot;
 
 import com.google.common.base.Preconditions;
 import lombok.Getter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.refinedev.spigot.event.IListener;
 import xyz.refinedev.spigot.event.impl.equipment.EquipmentListener;
@@ -9,6 +11,7 @@ import xyz.refinedev.spigot.hider.EntityHider;
 import xyz.refinedev.spigot.knockback.IKnockbackType;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * This Project is property of Refine Development © 2021 - 2022
@@ -21,6 +24,8 @@ import java.lang.reflect.Field;
 
 @Getter
 public class SpigotHandler {
+    
+    private static final Logger LOGGER = LogManager.getLogger(SpigotHandler.class);
 
     private final JavaPlugin plugin;
     /**
@@ -64,10 +69,11 @@ public class SpigotHandler {
         if (type == SpigotType.Default) return;
 
         this.knockback = type.getKnockbackType();
+
+        if (!hcfMode) return; // Don't do HCF events if not required
+
         this.listener = type.getListener();
         this.listener.register(plugin);
-
-        if (!hcfMode) return;
 
         // Register our custom event listener for equipment set event
         EquipmentListener equipmentListener = new EquipmentListener();
@@ -82,14 +88,14 @@ public class SpigotHandler {
         boolean protocolLib = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
         Preconditions.checkArgument(protocolLib, "ProtocolLib is required for the EntityHider!");
         if (!this.isEntityHiderRequired()) {
-            plugin.getLogger().warning("[EntityHider] The spigot you are using, already has a built-in entity hider!");
-            plugin.getLogger().warning("[EntityHider] Please refrain from using the API's Custom Entity Hider.");
+            LOGGER.info("[EntityHider] Detected a decent spigot, using spigot-sided entity hider!");
+            return;
         }
 
         EntityHider entityHider = new EntityHider(plugin, EntityHider.Policy.BLACKLIST);
         entityHider.startListening();
 
-        plugin.getLogger().info("[EntityHider] Successfully enabled the custom Entity Hider, intercepting packets...");
+        LOGGER.info("[EntityHider] Successfully enabled the custom Entity Hider, intercepting packets...");
     }
 
 
@@ -100,12 +106,25 @@ public class SpigotHandler {
      * @return {@link Boolean}
      */
     public boolean isEntityHiderRequired() {
+        boolean required = true;
         try {
             Class<?> classInstance = Class.forName("net.minecraft.server.v1_8_R3.EntityItem");
-            classInstance.getField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
-            return true;
-        } catch (ClassNotFoundException | NoSuchFieldException e) {
-            return false;
-        }
+            Field field = classInstance.getDeclaredField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
+            required = false;
+        } catch (ClassNotFoundException | NoSuchFieldException ignored) {}
+
+        try {
+            Class<?> classInstance = Class.forName("net.minecraft.server.v1_8_R3.PlayerList");
+            Method method = classInstance.getDeclaredMethod("sendPacketNearbyIncludingSelf"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
+            required = false;
+        } catch (ClassNotFoundException | NoSuchMethodException ignored) {}
+
+        try {
+            Class<?> classInstance = Class.forName("org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer");
+            Method method = classInstance.getDeclaredMethod("canSeeEntity"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer
+            required = false;
+        } catch (ClassNotFoundException | NoSuchMethodException ignored) {}
+
+        return required;
     }
 }

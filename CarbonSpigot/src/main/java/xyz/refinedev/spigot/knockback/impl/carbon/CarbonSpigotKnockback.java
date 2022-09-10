@@ -1,9 +1,9 @@
 package xyz.refinedev.spigot.knockback.impl.carbon;
 
 import org.bukkit.entity.Player;
+import xyz.refinedev.spigot.api.knockback.KnockbackAPI;
 import xyz.refinedev.spigot.knockback.IKnockbackType;
-import xyz.refinedev.spigot.knockback.IKnockback;
-import xyz.refinedev.spigot.knockback.KnockbackAPI;
+import xyz.refinedev.spigot.knockback.KnockbackProfile;
 
 /**
  * This Project is property of Refine Development © 2021 - 2022
@@ -18,7 +18,11 @@ public class CarbonSpigotKnockback implements IKnockbackType {
 
     @Override
     public void setKnockback(Player player, String knockback) {
-        IKnockback<?, ?, ?, ?> knockbackImplement = KnockbackAPI.getByName(knockback);
-        KnockbackAPI.applyKnockback(knockbackImplement, player);
+        KnockbackAPI api = KnockbackAPI.getInstance();
+        KnockbackProfile profile = api.getProfile(knockback);
+        if (profile == null) {
+            profile = api.getDefaultProfile();
+        }
+        api.setPlayerProfile(player, profile);
     }
 }
