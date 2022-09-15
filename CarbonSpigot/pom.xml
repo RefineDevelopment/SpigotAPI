@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>xyz.refinedev.api</groupId>
-            <artifactId>API</artifactId>
+            <artifactId>SpigotAPI-API</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
