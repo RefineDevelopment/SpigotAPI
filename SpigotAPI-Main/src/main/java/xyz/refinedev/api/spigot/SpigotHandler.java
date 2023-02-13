@@ -41,7 +41,7 @@ public class SpigotHandler {
     private IListener listener;
     /**
      * An enum that detects the correct spigot and
-     * gives it's API instance
+     * gives its API instance
      */
     protected SpigotType type;
 
@@ -65,9 +65,6 @@ public class SpigotHandler {
      */
     public void init(boolean hcfMode) {
         this.type = SpigotType.get(); // We call the static method that checks for the supported spigot and returns the correct type
-
-        if (type == SpigotType.Default) return;
-
         this.knockback = type.getKnockbackType();
 
         if (!hcfMode) return; // Don't do HCF events if not required
@@ -107,6 +104,8 @@ public class SpigotHandler {
      */
     public boolean isEntityHiderRequired() {
         boolean required = true;
+
+        // If this fails for a spigot, it's a shit spigot.
         try {
             Class<?> classInstance = Class.forName("net.minecraft.server.v1_8_R3.EntityItem");
             Field field = classInstance.getDeclaredField("owner"); // Most, if not all spigot entity hiders have this to track if owner is visible to viewer

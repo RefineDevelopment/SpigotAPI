@@ -12,6 +12,7 @@ import xyz.refinedev.api.spigot.knockback.impl.fox.FoxSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.fox.FoxSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.ispigot.iSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.ispigot.iSpigotListener;
+import xyz.refinedev.api.spigot.knockback.impl.paper.PaperKnockback;
 
 import java.util.Arrays;
 
@@ -28,14 +29,14 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public enum SpigotType {
 
-    CarbonSpigot("CarbonSpigot", "xyz.refinedev.spigot.CarbonSpigot", new CarbonSpigotKnockback(), new CarbonSpigotListener()),
+    CarbonSpigot("CarbonSpigot", "xyz.refinedev.spigot.api.knockback.KnockbackAPI", new CarbonSpigotKnockback(), new CarbonSpigotListener()),
     FoxSpigot("FoxSpigot", "pt.foxspigot.jar.knockback.KnockbackModule", new FoxSpigotKnockback(), new FoxSpigotListener()),
     AtomSpigot("AtomSpigot", "xyz.yooniks.atomspigot.AtomSpigot", new AtomSpigotKnockback(), new AtomSpigotListener()),
     iSpigot("iSpigot", "spg.lgdev.iSpigot", new iSpigotKnockback(), new iSpigotListener()),
-    Default("None", "none", null, null);
+    Default("Paper", "", new PaperKnockback(), null);
 
     private final String name;
-    private final String packageName;
+    private final String classToCheck;
     private final IKnockbackType knockbackType;
     private final IListener listener;
 
@@ -46,7 +47,7 @@ public enum SpigotType {
     public static SpigotType get() {
         return Arrays
                 .stream(SpigotType.values())
-                .filter(kSpigotType -> !kSpigotType.equals(SpigotType.Default) && check(kSpigotType.getPackageName()))
+                .filter(spigot -> !spigot.equals(SpigotType.Default) && check(spigot.getClassToCheck()))
                 .findFirst()
                 .orElse(SpigotType.Default);
     }
@@ -58,6 +59,8 @@ public enum SpigotType {
      * @return {@link Boolean}
      */
     public static boolean check(String string) {
+        if (string.length() <= 0) return false;
+
         try {
             Class.forName(string);
             return true;
