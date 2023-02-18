@@ -16,7 +16,7 @@
 
     <groupId>xyz.refinedev.api</groupId>
     <artifactId>SpigotAPI</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>pom</packaging>
 
     <modules>
@@ -35,6 +35,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>refine-releases</id>
+            <url>https://maven.insidious.cc/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
 
     <repositories>
         <repository>

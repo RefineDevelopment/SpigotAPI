@@ -1,10 +1,14 @@
 package xyz.refinedev.api.spigot;
 
 import com.google.common.base.Preconditions;
+
 import lombok.Getter;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.bukkit.plugin.java.JavaPlugin;
+
 import xyz.refinedev.api.spigot.event.IListener;
 import xyz.refinedev.api.spigot.equipment.EquipmentListener;
 import xyz.refinedev.api.spigot.hider.EntityHider;
@@ -67,7 +71,7 @@ public class SpigotHandler {
         this.type = SpigotType.get(); // We call the static method that checks for the supported spigot and returns the correct type
         this.knockback = type.getKnockbackType();
 
-        if (!hcfMode) return; // Don't do HCF events if not required
+        if (!hcfMode || this.type == SpigotType.Default) return; // Don't do HCF events if not required
 
         this.listener = type.getListener();
         this.listener.register(plugin);
