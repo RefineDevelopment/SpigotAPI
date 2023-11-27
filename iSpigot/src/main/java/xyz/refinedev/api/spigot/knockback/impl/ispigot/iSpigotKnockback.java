@@ -1,9 +1,9 @@
 package xyz.refinedev.api.spigot.knockback.impl.ispigot;
 
+import dev.imanity.knockback.api.Knockback;
+import dev.imanity.knockback.api.KnockbackService;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import spg.lgdev.iSpigot;
-import spg.lgdev.knockback.Knockback;
-import spg.lgdev.knockback.KnockbackHandler;
 import xyz.refinedev.api.spigot.knockback.IKnockbackType;
 
 /**
@@ -22,8 +22,8 @@ public class iSpigotKnockback implements IKnockbackType {
 
     @Override
     public void setKnockback(Player player, String knockback) {
-        KnockbackHandler knockbackHandler = iSpigot.INSTANCE.getKnockbackHandler();
-        Knockback<?, ?, ?, ?> knockbackImplement = knockbackHandler.getKnockbackProfile(knockback);
-        player.setKnockback(knockbackImplement);
+        KnockbackService knockbackHandler = Bukkit.getServer().imanity().getKnockbackService();
+        Knockback knockbackProfile = knockbackHandler.getKnockbackByName(knockback);
+        knockbackHandler.setKnockback(player, knockbackProfile);
     }
 }

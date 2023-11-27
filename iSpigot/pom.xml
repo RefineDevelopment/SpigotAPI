@@ -16,13 +16,26 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>imanity-repo</id>
+            <url>https://maven.imanity.dev/repository/imanity-libraries/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
+        <!-- ImanitySpigot API -->
         <dependency>
-            <groupId>xyz.refinedev.api</groupId>
-            <artifactId>KnockbackAPI</artifactId>
-            <version>Latest</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/API.jar</systemPath>
+            <groupId>org.imanity.imanityspigot</groupId>
+            <artifactId>api</artifactId>
+            <version>2022.05.3b1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>dev.imanity.knockback</groupId>
+            <artifactId>api</artifactId>
+            <version>0.0.1b1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>xyz.refinedev.api</groupId>
