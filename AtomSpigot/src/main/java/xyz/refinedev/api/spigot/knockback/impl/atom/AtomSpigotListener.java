@@ -8,35 +8,40 @@ import org.bukkit.event.entity.PotionEffectExpireEvent;
 import org.bukkit.event.entity.PotionEffectRemoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.refinedev.api.spigot.event.IListener;
-import xyz.refinedev.api.spigot.event.impl.PotionEffectExtendEvent;
+import xyz.refinedev.api.spigot.event.impl.RefinePotionAddEvent;
+import xyz.refinedev.api.spigot.event.impl.RefineRefinePotionExpireEvent;
+import xyz.refinedev.api.spigot.event.impl.RefinePotionRemoveEvent;
 
 /**
- * This Project is property of Refine Development © 2021 - 2022
- * Redistribution of this Project is not allowed
+ * <p>
+ * This Project is property of Refine Development.<br>
+ * Copyright © 2023, All Rights Reserved.<br>
+ * Redistribution of this Project is not allowed.<br>
+ * </p>
  *
  * @author Drizzy
- * Created: 4/30/2022
- * Project: KnockbackAPI
+ * @since 4/30/2022
+ * @version KnockbackAPI
  */
 
 public class AtomSpigotListener implements IListener, Listener {
 
     @EventHandler
     public void onExpire(PotionEffectExpireEvent event) {
-        xyz.refinedev.api.spigot.event.impl.PotionEffectExpireEvent custom = new xyz.refinedev.api.spigot.event.impl.PotionEffectExpireEvent(event.getEntity(), event.getEffect());
+        RefineRefinePotionExpireEvent custom = new RefineRefinePotionExpireEvent(event.getEntity(), event.getEffect());
         Bukkit.getPluginManager().callEvent(custom);
     }
 
     @EventHandler
     public void onAdd(PotionEffectAddEvent event) {
-        xyz.refinedev.api.spigot.event.impl.PotionEffectAddEvent.EffectAddReason reason = xyz.refinedev.api.spigot.event.impl.PotionEffectAddEvent.EffectAddReason.UNKNOWN;
-        xyz.refinedev.api.spigot.event.impl.PotionEffectAddEvent custom = new xyz.refinedev.api.spigot.event.impl.PotionEffectAddEvent(event.getEntity(), event.getEffect(), reason);
+        RefinePotionAddEvent.EffectAddReason reason = RefinePotionAddEvent.EffectAddReason.UNKNOWN;
+        RefinePotionAddEvent custom = new RefinePotionAddEvent(event.getEntity(), event.getEffect(), reason);
         Bukkit.getPluginManager().callEvent(custom);
     }
 
     @EventHandler
     public void onRemove(PotionEffectRemoveEvent event) {
-        xyz.refinedev.api.spigot.event.impl.PotionEffectRemoveEvent custom = new xyz.refinedev.api.spigot.event.impl.PotionEffectRemoveEvent(event.getEntity(), event.getEffect());
+        RefinePotionRemoveEvent custom = new RefinePotionRemoveEvent(event.getEntity(), event.getEffect());
         Bukkit.getPluginManager().callEvent(custom);
     }
 

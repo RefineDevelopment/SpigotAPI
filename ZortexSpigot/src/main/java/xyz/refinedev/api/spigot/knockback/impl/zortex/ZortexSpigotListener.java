@@ -1,4 +1,4 @@
-package xyz.refinedev.api.spigot.knockback.impl.carbon;
+package xyz.refinedev.api.spigot.knockback.impl.zortex;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -8,6 +8,7 @@ import org.bukkit.event.entity.PotionEffectExpireEvent;
 import org.bukkit.event.entity.PotionEffectExtendEvent;
 import org.bukkit.event.entity.PotionEffectRemoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import xyz.refinedev.api.spigot.event.IListener;
 import xyz.refinedev.api.spigot.event.impl.RefinePotionAddEvent;
 import xyz.refinedev.api.spigot.event.impl.RefineRefinePotionExpireEvent;
@@ -26,7 +27,7 @@ import xyz.refinedev.api.spigot.event.impl.RefinePotionRemoveEvent;
  * @version SpigotAPI
  */
 
-public class CarbonSpigotListener implements IListener, Listener {
+public class ZortexSpigotListener implements IListener, Listener {
 
     @EventHandler
     public void onExpire(PotionEffectExpireEvent event) {
@@ -36,14 +37,14 @@ public class CarbonSpigotListener implements IListener, Listener {
 
     @EventHandler
     public void onAdd(PotionEffectAddEvent event) {
-        RefinePotionAddEvent.EffectAddReason reason = RefinePotionAddEvent.EffectAddReason.valueOf(event.getCause().name());
+        RefinePotionAddEvent.EffectAddReason reason = RefinePotionAddEvent.EffectAddReason.valueOf(event.getReason().name());
         RefinePotionAddEvent custom = new RefinePotionAddEvent(event.getEntity(), event.getEffect(), reason);
         Bukkit.getPluginManager().callEvent(custom);
     }
 
     @EventHandler
     public void onExtend(PotionEffectExtendEvent event) {
-        RefinePotionAddEvent.EffectAddReason reason = RefinePotionAddEvent.EffectAddReason.valueOf(event.getCause().name());
+        RefinePotionAddEvent.EffectAddReason reason = RefinePotionAddEvent.EffectAddReason.valueOf(event.getReason().name());
         RefinePotionExtendEvent custom = new RefinePotionExtendEvent(event.getEntity(), event.getEffect(), reason, event.getOldEffect());
         Bukkit.getPluginManager().callEvent(custom);
     }

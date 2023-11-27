@@ -4,18 +4,21 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.potion.PotionEffect;
 
 /**
- * This Project is property of Refine Development © 2021 - 2022
- * Redistribution of this Project is not allowed
+ * <p>
+ * This Project is property of Refine Development.<br>
+ * Copyright © 2023, All Rights Reserved.<br>
+ * Redistribution of this Project is not allowed.<br>
+ * </p>
  *
  * @author Drizzy
- * Created: 4/30/2022
- * Project: SpigotAPI
+ * @since 4/30/2022
+ * @version SpigotAPI
  */
 
-public class PotionEffectExpireEvent extends PotionEffectRemoveEvent {
+public class RefineRefinePotionExpireEvent extends RefinePotionRemoveEvent {
     private int duration = 0;
 
-    public PotionEffectExpireEvent(LivingEntity entity, PotionEffect effect) {
+    public RefineRefinePotionExpireEvent(LivingEntity entity, PotionEffect effect) {
         super(entity, effect);
     }
 

@@ -13,16 +13,21 @@ import xyz.refinedev.api.spigot.knockback.impl.fox.FoxSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.ispigot.iSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.ispigot.iSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.paper.PaperKnockback;
+import xyz.refinedev.api.spigot.knockback.impl.zortex.ZortexSpigotKnockback;
+import xyz.refinedev.api.spigot.knockback.impl.zortex.ZortexSpigotListener;
 
 import java.util.Arrays;
 
 /**
- * This Project is property of Refine Development © 2021 - 2022
- * Redistribution of this Project is not allowed
+ * <p>
+ * This Project is property of Refine Development.<br>
+ * Copyright © 2023, All Rights Reserved.<br>
+ * Redistribution of this Project is not allowed.<br>
+ * </p>
  *
  * @author Drizzy
- * Created: 4/30/2022
- * Project: SpigotAPI
+ * @since 4/30/2022
+ * @version SpigotAPI
  */
 
 @Getter
@@ -33,6 +38,7 @@ public enum SpigotType {
     FoxSpigot("FoxSpigot", "pt.foxspigot.jar.knockback.KnockbackModule", new FoxSpigotKnockback(), new FoxSpigotListener()),
     AtomSpigot("AtomSpigot", "xyz.yooniks.atomspigot.AtomSpigot", new AtomSpigotKnockback(), new AtomSpigotListener()),
     iSpigot("iSpigot", "spg.lgdev.iSpigot", new iSpigotKnockback(), new iSpigotListener()),
+    ZortexSpigot("ZortexSpigot", "club.zortex.spigot.ZortexSpigot", new ZortexSpigotKnockback(), new ZortexSpigotListener()),
     Default("Paper", "", new PaperKnockback(), null);
 
     private final String name;
@@ -59,7 +65,7 @@ public enum SpigotType {
      * @return {@link Boolean}
      */
     public static boolean check(String string) {
-        if (string.length() <= 0) return false;
+        if (string.isEmpty()) return false;
 
         try {
             Class.forName(string);

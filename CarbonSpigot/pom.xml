@@ -22,7 +22,7 @@
             <artifactId>KnockbackAPI</artifactId>
             <version>Latest</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/Carbon-API.jar</systemPath>
+            <systemPath>${basedir}/lib/CarbonSpigot-API.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>xyz.refinedev.api</groupId>

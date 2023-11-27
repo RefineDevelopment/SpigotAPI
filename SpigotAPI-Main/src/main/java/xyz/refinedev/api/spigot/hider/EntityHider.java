@@ -4,6 +4,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.ProtocolLibrary;
 import com.comphenix.protocol.ProtocolManager;
 import com.comphenix.protocol.events.PacketAdapter;
+import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.google.common.base.Preconditions;
@@ -12,13 +13,12 @@ import com.google.common.collect.Table;
 import lombok.SneakyThrows;
 import net.minecraft.server.v1_8_R3.EntityItem;
 import net.minecraft.server.v1_8_R3.MathHelper;
-import net.minecraft.server.v1_8_R3.PacketPlayOutEntityDestroy;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -32,6 +32,7 @@ import org.bukkit.event.world.ChunkUnloadEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import xyz.refinedev.api.spigot.util.MathUtil;
 
 import java.lang.reflect.Field;
 import java.util.Collections;
@@ -47,7 +48,7 @@ import static com.comphenix.protocol.PacketType.Play.Server.*;
  * by DevDrizzy (Cleaned up code and Removed Excessive Reflection usage)
  *
  * @since 9/13/2021
- * Project: Array
+ * @version Array
  */
 @SuppressWarnings({"deprecation", "unused"})
 public class EntityHider {
@@ -295,9 +296,9 @@ public class EntityHider {
                     boolean isInMatch = false;
 
                     for ( ThrownPotion potion : receiver.getWorld().getEntitiesByClass(ThrownPotion.class) ) {
-                        int potionX = MathHelper.floor(x);
-                        int potionY = MathHelper.floor(y);
-                        int potionZ = MathHelper.floor(z);
+                        int potionX = MathUtil.floor(x);
+                        int potionY = MathUtil.floor(y);
+                        int potionZ = MathUtil.floor(z);
 
                         if (!(potion.getShooter() instanceof Player)) continue;
                         if (x != potionX || y != potionY || z != potionZ) continue;
@@ -521,8 +522,14 @@ public class EntityHider {
     }
 
     public void destroy(Player player, int entityId) {
-        PacketPlayOutEntityDestroy packet = new PacketPlayOutEntityDestroy(entityId);
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
+        PacketContainer container = new PacketContainer(ENTITY_DESTROY);
+        container.getIntegerArrays().write(0, new int[]{entityId});
+
+        try {
+            ProtocolLibrary.getProtocolManager().sendServerPacket(player, container);
+        } catch (Exception e) {
+            //
+        }
     }
 
 }

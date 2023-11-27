@@ -3,9 +3,7 @@ package xyz.refinedev.api.spigot;
 import com.google.common.base.Preconditions;
 
 import lombok.Getter;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.log4j.Log4j2;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,18 +16,19 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
- * This Project is property of Refine Development © 2021 - 2022
- * Redistribution of this Project is not allowed
+ * <p>
+ * This Project is property of Refine Development.<br>
+ * Copyright © 2023, All Rights Reserved.<br>
+ * Redistribution of this Project is not allowed.<br>
+ * </p>
  *
  * @author Drizzy
- * Created: 4/30/2022
- * Project: SpigotAPI
+ * @since 4/30/2022
+ * @version SpigotAPI
  */
 
-@Getter
+@Getter @Log4j2
 public class SpigotHandler {
-    
-    private static final Logger LOGGER = LogManager.getLogger(SpigotHandler.class);
 
     private final JavaPlugin plugin;
     /**
@@ -65,13 +64,13 @@ public class SpigotHandler {
     /**
      * Main initiate method that will hook into the correct spigot
      *
-     * @param hcfMode {@link Boolean} should we register a listener for custom events
+     * @param teamFight {@link Boolean} should we register a listener for custom events
      */
-    public void init(boolean hcfMode) {
+    public void init(boolean teamFight) {
         this.type = SpigotType.get(); // We call the static method that checks for the supported spigot and returns the correct type
         this.knockback = type.getKnockbackType();
 
-        if (!hcfMode || this.type == SpigotType.Default) return; // Don't do HCF events if not required
+        if (!teamFight || this.type == SpigotType.Default) return; // Don't do HCF events if not required
 
         this.listener = type.getListener();
         this.listener.register(plugin);
@@ -84,19 +83,22 @@ public class SpigotHandler {
     /**
      * Start our custom entity hider which patches visibility bugs
      * in default paper, bukkit and spigot software
+     *
+     * @deprecated This is no longer used for Refine as we use Itzel NMS API.
      */
+    @Deprecated
     public void initiateEntityHider() {
         boolean protocolLib = plugin.getServer().getPluginManager().isPluginEnabled("ProtocolLib");
         Preconditions.checkArgument(protocolLib, "ProtocolLib is required for the EntityHider!");
         if (!this.isEntityHiderRequired()) {
-            LOGGER.info("[EntityHider] Detected a decent spigot, using spigot-sided entity hider!");
+            log.info("[EntityHider] Detected a decent spigot, using spigot-sided entity hider!");
             return;
         }
 
         EntityHider entityHider = new EntityHider(plugin, EntityHider.Policy.BLACKLIST);
         entityHider.startListening();
 
-        LOGGER.info("[EntityHider] Successfully enabled the custom Entity Hider, intercepting packets...");
+        log.info("[EntityHider] Successfully enabled the custom Entity Hider, intercepting packets...");
     }
 
 

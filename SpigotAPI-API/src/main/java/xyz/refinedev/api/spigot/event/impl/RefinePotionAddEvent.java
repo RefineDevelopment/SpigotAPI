@@ -6,22 +6,25 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.potion.PotionEffect;
 
 /**
- * This Project is property of Refine Development © 2021 - 2022
- * Redistribution of this Project is not allowed
+ * <p>
+ * This Project is property of Refine Development.<br>
+ * Copyright © 2023, All Rights Reserved.<br>
+ * Redistribution of this Project is not allowed.<br>
+ * </p>
  *
  * @author Drizzy
- * Created: 4/30/2022
- * Project: SpigotAPI
+ * @since 4/30/2022
+ * @version SpigotAPI
  */
 
 @SuppressWarnings("unused")
-public class PotionEffectAddEvent extends PotionEffectEvent implements Cancellable {
+public class RefinePotionAddEvent extends PotionEffectEvent implements Cancellable {
 
     private boolean cancelled;
     private final EffectAddReason reason;
     private static final HandlerList handlers = new HandlerList();
 
-    public PotionEffectAddEvent(LivingEntity what, PotionEffect effect, EffectAddReason reason) {
+    public RefinePotionAddEvent(LivingEntity what, PotionEffect effect, EffectAddReason reason) {
         super(what, effect);
         this.reason = reason;
     }
@@ -58,6 +61,7 @@ public class PotionEffectAddEvent extends PotionEffectEvent implements Cancellab
         POTION_SPLASH,
         POTION_DRINK,
         CUSTOM,
+        PLUGIN,
         UNKNOWN;
     }
 }
