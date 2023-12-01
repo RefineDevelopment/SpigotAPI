@@ -2,8 +2,10 @@ package xyz.refinedev.api.spigot.knockback.impl.ispigot;
 
 import dev.imanity.knockback.api.Knockback;
 import dev.imanity.knockback.api.KnockbackService;
+
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+
 import xyz.refinedev.api.spigot.knockback.IKnockbackType;
 
 /**
@@ -17,7 +19,6 @@ import xyz.refinedev.api.spigot.knockback.IKnockbackType;
  * @since 4/30/2022
  * @version KnockbackAPI
  */
-
 public class iSpigotKnockback implements IKnockbackType {
 
     @Override
