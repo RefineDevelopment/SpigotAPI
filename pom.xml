@@ -37,14 +37,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
 
-    <distributionManagement>
-        <repository>
-            <id>refine-releases</id>
-            <url>https://maven.insidious.cc/repository/maven-releases/</url>
-        </repository>
-    </distributionManagement>
-
-
     <repositories>
         <repository>
             <id>jitpack.io</id>
@@ -66,7 +58,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.12</version>
+            <version>1.18.26</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
