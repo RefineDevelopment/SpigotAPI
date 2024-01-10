@@ -23,6 +23,7 @@
         <module>SpigotAPI-API</module>
         <module>CarbonSpigot</module>
         <module>ZortexSpigot</module>
+        <module>pSpigot</module>
         <module>Paper</module>
         <module>FoxSpigot</module>
         <module>AtomSpigot</module>

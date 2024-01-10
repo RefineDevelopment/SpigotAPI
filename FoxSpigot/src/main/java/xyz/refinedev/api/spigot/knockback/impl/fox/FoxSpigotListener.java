@@ -10,7 +10,7 @@ import org.bukkit.event.entity.PotionEffectRemoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.refinedev.api.spigot.event.IListener;
 import xyz.refinedev.api.spigot.event.impl.RefinePotionAddEvent;
-import xyz.refinedev.api.spigot.event.impl.RefineRefinePotionExpireEvent;
+import xyz.refinedev.api.spigot.event.impl.RefinePotionExpireEvent;
 import xyz.refinedev.api.spigot.event.impl.RefinePotionExtendEvent;
 import xyz.refinedev.api.spigot.event.impl.RefinePotionRemoveEvent;
 
@@ -30,7 +30,7 @@ public class FoxSpigotListener implements IListener, Listener {
 
     @EventHandler
     public void onExpire(PotionEffectExpireEvent event) {
-        RefineRefinePotionExpireEvent custom = new RefineRefinePotionExpireEvent(event.getEntity(), event.getEffect());
+        RefinePotionExpireEvent custom = new RefinePotionExpireEvent(event.getEntity(), event.getEffect());
         Bukkit.getPluginManager().callEvent(custom);
     }
 

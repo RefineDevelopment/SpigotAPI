@@ -1,4 +1,4 @@
-package xyz.refinedev.api.spigot.knockback.impl.ispigot;
+package xyz.refinedev.api.spigot.knockback.impl.pspigot;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
@@ -24,10 +24,10 @@ import xyz.refinedev.api.spigot.event.impl.RefinePotionRemoveEvent;
  *
  * @author Drizzy
  * @since 4/30/2022
- * @version KnockbackAPI
+ * @version SpigotAPI
  */
 
-public class iSpigotListener implements IListener, Listener {
+public class pSpigotListener implements IListener, Listener {
 
     @EventHandler
     public void onExpire(PotionEffectExpireEvent event) {

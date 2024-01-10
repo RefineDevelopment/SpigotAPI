@@ -15,10 +15,10 @@ import org.bukkit.potion.PotionEffect;
  * @version SpigotAPI
  */
 
-public class RefineRefinePotionExpireEvent extends RefinePotionRemoveEvent {
+public class RefinePotionExpireEvent extends RefinePotionRemoveEvent {
     private int duration = 0;
 
-    public RefineRefinePotionExpireEvent(LivingEntity entity, PotionEffect effect) {
+    public RefinePotionExpireEvent(LivingEntity entity, PotionEffect effect) {
         super(entity, effect);
     }
 
