@@ -11,7 +11,7 @@ Also, useful if you need PotionExpireEvent or EquipmentSetEvent.
 - Easy to use.
 
 ## Installing
-You can need to shade this repository in your plugin.
+You need to shade this repository in your plugin.
 
 1. Clone this repository
 2. Enter the directory: `cd SpigotAPI`
