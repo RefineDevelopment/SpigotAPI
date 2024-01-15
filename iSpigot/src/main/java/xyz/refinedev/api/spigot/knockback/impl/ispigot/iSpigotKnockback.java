@@ -25,6 +25,9 @@ public class iSpigotKnockback implements IKnockbackType {
     public void setKnockback(Player player, String knockback) {
         KnockbackService knockbackHandler = Bukkit.getServer().imanity().getKnockbackService();
         Knockback knockbackProfile = knockbackHandler.getKnockbackByName(knockback);
+        if (knockbackProfile == null) {
+            knockbackProfile = knockbackHandler.getGlobalKnockback();
+        }
         knockbackHandler.setKnockback(player, knockbackProfile);
     }
 }

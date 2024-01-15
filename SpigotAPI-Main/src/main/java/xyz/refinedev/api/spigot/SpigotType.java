@@ -39,7 +39,7 @@ public enum SpigotType {
     CarbonSpigot("CarbonSpigot", "xyz.refinedev.spigot.api.knockback.KnockbackAPI", new CarbonSpigotKnockback(), new CarbonSpigotListener()),
     FoxSpigot("FoxSpigot", "pt.foxspigot.jar.knockback.KnockbackModule", new FoxSpigotKnockback(), new FoxSpigotListener()),
     AtomSpigot("AtomSpigot", "xyz.yooniks.atomspigot.AtomSpigot", new AtomSpigotKnockback(), new AtomSpigotListener()),
-    iSpigot("ImanitySpigot", "dev.imanity.knockback.api.KnockbackService", new iSpigotKnockback(), new iSpigotListener()),
+    iSpigot("ImanitySpigot", "org.imanity.imanityspigot.ImanitySpigot", new iSpigotKnockback(), new iSpigotListener()),
     ZortexSpigot("ZortexSpigot", "club.zortex.spigot.ZortexSpigot", new ZortexSpigotKnockback(), new ZortexSpigotListener()),
     pSpigot("pSpigot", "me.scalebound.pspigot.KnockbackProfile", new pSpigotKnockback(), new pSpigotListener()),
     Default("Paper", "", new PaperKnockback(), null);
