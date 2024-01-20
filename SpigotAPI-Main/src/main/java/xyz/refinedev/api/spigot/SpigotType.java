@@ -15,6 +15,8 @@ import xyz.refinedev.api.spigot.knockback.impl.ispigot.iSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.paper.PaperKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.pspigot.pSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.pspigot.pSpigotListener;
+import xyz.refinedev.api.spigot.knockback.impl.vspigot.vSpigotKnockback;
+import xyz.refinedev.api.spigot.knockback.impl.vspigot.vSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.zortex.ZortexSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.zortex.ZortexSpigotListener;
 
@@ -42,6 +44,7 @@ public enum SpigotType {
     iSpigot("ImanitySpigot", "org.imanity.imanityspigot.ImanitySpigot", new iSpigotKnockback(), new iSpigotListener()),
     ZortexSpigot("ZortexSpigot", "club.zortex.spigot.ZortexSpigot", new ZortexSpigotKnockback(), new ZortexSpigotListener()),
     pSpigot("pSpigot", "me.scalebound.pspigot.KnockbackProfile", new pSpigotKnockback(), new pSpigotListener()),
+    vSpigot("vSpigot", "ru.vspigot.VSpigot", new vSpigotKnockback(), new vSpigotListener()),
     Default("Paper", "", new PaperKnockback(), null);
 
     private final String name;

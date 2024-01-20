@@ -24,6 +24,7 @@
         <module>CarbonSpigot</module>
         <module>ZortexSpigot</module>
         <module>pSpigot</module>
+        <module>vSpigot</module>
         <module>Paper</module>
         <module>FoxSpigot</module>
         <module>AtomSpigot</module>
