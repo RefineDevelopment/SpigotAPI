@@ -11,6 +11,7 @@ import xyz.refinedev.api.spigot.event.IListener;
 import xyz.refinedev.api.spigot.equipment.EquipmentListener;
 import xyz.refinedev.api.spigot.hider.EntityHider;
 import xyz.refinedev.api.spigot.knockback.IKnockbackType;
+import xyz.refinedev.api.spigot.util.VersionUtil;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -67,7 +68,12 @@ public class SpigotHandler {
      * @param teamFight {@link Boolean} should we register a listener for custom events
      */
     public void init(boolean teamFight) {
-        this.type = SpigotType.get(); // We call the static method that checks for the supported spigot and returns the correct type
+        if (VersionUtil.MINOR_VERSION > 8) {
+            this.type = SpigotType.Default;
+        } else {
+            this.type = SpigotType.get(); // We call the static method that checks for the supported spigot and returns the correct type
+        }
+
         this.knockback = type.getKnockbackType();
 
         if (!teamFight || this.type == SpigotType.Default) return; // Don't do HCF events if not required

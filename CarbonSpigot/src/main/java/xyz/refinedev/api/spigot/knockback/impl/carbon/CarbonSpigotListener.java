@@ -32,6 +32,10 @@ public class CarbonSpigotListener implements IListener, Listener {
     public void onExpire(PotionEffectExpireEvent event) {
         RefinePotionExpireEvent custom = new RefinePotionExpireEvent(event.getEntity(), event.getEffect());
         Bukkit.getPluginManager().callEvent(custom);
+
+        if (custom.isCancelled()) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
