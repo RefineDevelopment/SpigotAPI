@@ -1,4 +1,4 @@
-package xyz.refinedev.api.spigot.knockback.impl.carbon;
+package xyz.refinedev.api.spigot.knockback.impl.carbonspigot;
 
 import org.bukkit.entity.Player;
 import xyz.refinedev.spigot.api.knockback.KnockbackAPI;

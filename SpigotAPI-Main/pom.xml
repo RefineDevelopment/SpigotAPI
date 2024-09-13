@@ -43,6 +43,11 @@
         </dependency>
         <dependency>
             <groupId>xyz.refinedev.api</groupId>
+            <artifactId>Carbon</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>xyz.refinedev.api</groupId>
             <artifactId>FoxSpigot</artifactId>
             <version>1.1</version>
         </dependency>

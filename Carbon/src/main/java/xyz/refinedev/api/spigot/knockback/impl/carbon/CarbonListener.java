@@ -26,7 +26,7 @@ import xyz.refinedev.api.spigot.event.impl.RefinePotionRemoveEvent;
  * @version SpigotAPI
  */
 
-public class CarbonSpigotListener implements IListener, Listener {
+public class CarbonListener implements IListener, Listener {
 
     @EventHandler
     public void onExpire(PotionEffectExpireEvent event) {

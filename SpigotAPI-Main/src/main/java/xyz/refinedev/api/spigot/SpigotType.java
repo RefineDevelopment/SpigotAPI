@@ -6,8 +6,10 @@ import xyz.refinedev.api.spigot.event.IListener;
 import xyz.refinedev.api.spigot.knockback.IKnockbackType;
 import xyz.refinedev.api.spigot.knockback.impl.atom.AtomSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.atom.AtomSpigotListener;
-import xyz.refinedev.api.spigot.knockback.impl.carbon.CarbonSpigotKnockback;
-import xyz.refinedev.api.spigot.knockback.impl.carbon.CarbonSpigotListener;
+import xyz.refinedev.api.spigot.knockback.impl.carbon.CarbonKnockback;
+import xyz.refinedev.api.spigot.knockback.impl.carbon.CarbonListener;
+import xyz.refinedev.api.spigot.knockback.impl.carbonspigot.CarbonSpigotKnockback;
+import xyz.refinedev.api.spigot.knockback.impl.carbonspigot.CarbonSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.fox.FoxSpigotKnockback;
 import xyz.refinedev.api.spigot.knockback.impl.fox.FoxSpigotListener;
 import xyz.refinedev.api.spigot.knockback.impl.ispigot.iSpigotKnockback;
@@ -39,6 +41,7 @@ import java.util.Arrays;
 public enum SpigotType {
 
     CarbonSpigot("CarbonSpigot", "xyz.refinedev.spigot.api.knockback.KnockbackAPI", new CarbonSpigotKnockback(), new CarbonSpigotListener()),
+    Carbon("Carbon", "xyz.refinedev.spigot.features.combat.CombatAPI", new CarbonKnockback(), new CarbonListener()),
     FoxSpigot("FoxSpigot", "pt.foxspigot.jar.knockback.KnockbackModule", new FoxSpigotKnockback(), new FoxSpigotListener()),
     AtomSpigot("AtomSpigot", "xyz.yooniks.atomspigot.AtomSpigot", new AtomSpigotKnockback(), new AtomSpigotListener()),
     iSpigot("ImanitySpigot", "org.imanity.imanityspigot.ImanitySpigot", new iSpigotKnockback(), new iSpigotListener()),
