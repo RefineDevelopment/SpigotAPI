@@ -22,7 +22,7 @@ OR
 <repositories>
     <repository>
         <id>refine-public</id>
-        <url>https://maven.refinedev.xyz/repository/public-repo/</url>
+        <url>https://maven.refinedev.xyz/public-repo</url>
     </repository>
 </repositories>
 ```
@@ -33,7 +33,7 @@ Add this to your `pom.xml` `<dependencies>`:
 <dependency>
   <groupId>xyz.refinedev.api</groupId>
   <artifactId>SpigotAPI</artifactId>
-  <version>1.2</version>
+  <version>1.7</version>
   <scope>compile</scope>
 </dependency>
 ```
